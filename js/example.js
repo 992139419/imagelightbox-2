@@ -57,7 +57,6 @@ $(function() {
 
     arrowsOn = function( instance, selector )
     {
-//         alert('hasTouch');
 
         var $arrows = $( '<button type="button" class="imagelightbox-arrow imagelightbox-arrow-left"></button><button type="button" class="imagelightbox-arrow imagelightbox-arrow-right"></button>' );
 
@@ -103,6 +102,4 @@ $(function() {
         onLoadStart:    function() { captionOff(); activityIndicatorOn(); },
         onLoadEnd:      function() { captionOn(); activityIndicatorOff();}
     });
-
-
 });

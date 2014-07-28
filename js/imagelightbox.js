@@ -9,65 +9,65 @@
 	'use strict';
 
 	var cssTransitionSupport = function()
-		{
-			var s = document.body || document.documentElement, s = s.style;
-			if( s.WebkitTransition == '' ) return '-webkit-';
-			if( s.MozTransition == '' ) return '-moz-';
-			if( s.OTransition == '' ) return '-o-';
-			if( s.transition == '' ) return '';
+	{
+		var s = document.body || document.documentElement, s = s.style;
+		if( s.WebkitTransition == '' ) return '-webkit-';
+		if( s.MozTransition == '' ) return '-moz-';
+		if( s.OTransition == '' ) return '-o-';
+		if( s.transition == '' ) return '';
+		return false;
+	},
+
+	isCssTransitionSupport = cssTransitionSupport() === false ? false : true,
+
+	cssTransitionTranslateX = function( element, positionX, speed )
+	{
+		var options = {}, prefix = cssTransitionSupport();
+		options[ prefix + 'transform' ]	 = 'translateX(' + positionX + ')';
+		options[ prefix + 'transition' ] = prefix + 'transform ' + speed + 's linear';
+		element.css( options );
+	},
+
+	hasTouch	= ( 'ontouchstart' in window ),
+	hasPointers = window.navigator.pointerEnabled || window.navigator.msPointerEnabled,
+	wasTouched	= function( event )
+	{
+		if( hasTouch )
+			return true;
+
+		if( !hasPointers || typeof event === 'undefined' || typeof event.pointerType === 'undefined' )
 			return false;
-		},
 
-		isCssTransitionSupport = cssTransitionSupport() === false ? false : true,
-
-		cssTransitionTranslateX = function( element, positionX, speed )
+		if( typeof event.MSPOINTER_TYPE_MOUSE !== 'undefined' )
 		{
-			var options = {}, prefix = cssTransitionSupport();
-			options[ prefix + 'transform' ]	 = 'translateX(' + positionX + ')';
-			options[ prefix + 'transition' ] = prefix + 'transform ' + speed + 's linear';
-			element.css( options );
-		},
-
-		hasTouch	= ( 'ontouchstart' in window ),
-		hasPointers = window.navigator.pointerEnabled || window.navigator.msPointerEnabled,
-		wasTouched	= function( event )
-		{
-			if( hasTouch )
+			if( event.MSPOINTER_TYPE_MOUSE != event.pointerType )
+				return true;
+		}
+		else
+			if( event.pointerType != 'mouse' )
 				return true;
 
-			if( !hasPointers || typeof event === 'undefined' || typeof event.pointerType === 'undefined' )
-				return false;
-
-			if( typeof event.MSPOINTER_TYPE_MOUSE !== 'undefined' )
-			{
-				if( event.MSPOINTER_TYPE_MOUSE != event.pointerType )
-					return true;
-			}
-			else
-				if( event.pointerType != 'mouse' )
-					return true;
-
-			return false;
-		};
+		return false;
+	};
 
 	$.fn.imageLightbox = function( options )
 	{
 		var options	   = $.extend(
-						 {
-						 	selector:		'id="imagelightbox"',
-						 	allowedTypes:	'png|jpg|jpeg|gif',
-						 	animationSpeed:	250,
-						 	preloadNext:	true,
-						 	enableKeyboard:	true,
-						 	quitOnEnd:		false,
-						 	quitOnImgClick: false,
-						 	quitOnDocClick: true,
-						 	onStart:		false,
-						 	onEnd:			false,
-						 	onLoadStart:	false,
-						 	onLoadEnd:		false
-						 },
-						 options ),
+			{
+				selector:		'id="imagelightbox"',
+				allowedTypes:	'png|jpg|jpeg|gif',
+				animationSpeed:	250,
+				preloadNext:	true,
+				enableKeyboard:	true,
+				quitOnEnd:		false,
+				quitOnImgClick: false,
+				quitOnDocClick: true,
+				onStart:		false,
+				onEnd:			false,
+				onLoadStart:	false,
+				onLoadEnd:		false
+            },
+             options ),
 
 			targets		= $([]),
 			target		= $(),
@@ -87,7 +87,7 @@
 				if( !image.length ) return true;
 
 				var screenWidth	 = $( window ).width() * 0.98,
-					screenHeight = $( window ).height() * 0.98,
+					screenHeight = $( window ).height() * 0.98, // sizes modified from original version.
 					tmpImage 	 = new Image();
 
 				tmpImage.src	= image.attr( 'src' );
