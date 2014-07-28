@@ -66,7 +66,7 @@ gulp.task('default', function() {
   livereload.listen();
 
   // Watch any files in dist/, reload on change
-  gulp.watch(['index.html']).on('change', function(file) {
+  gulp.watch(['example.html']).on('change', function(file) {
     server.changed(file.path);
   });
 

@@ -7,6 +7,18 @@
     height: auto;
 
     opacity: 0;
+    -ms-touch-action: none;
+    touch-action: none;
+
+    .no-csstransforms & {
+
+        top: 20px;
+        left: 50%;
+
+        height: auto;
+        max-width: 800px;
+        margin-left: -400px;
+    }
 }
 
 /* ACTIVITY INDICATION */
@@ -67,6 +79,19 @@
     text-indent: -9999px;
     transition: color .3s ease;
 
+    .no-csstransforms & {
+
+        height: auto;
+        padding: 10px;
+        width: auto;
+
+        border-radius: none;
+        content: 'close';
+        color: #fff;
+        text-decoration: none;
+        text-indent: 0;
+    }
+
     @media only screen and (min-width: 960px)
     {
         top: 30px;
@@ -93,6 +118,12 @@
     bottom: 20%;
     left: 50%;
     margin-left: -1px;
+
+    .no-csstransforms & {
+
+        display: none;
+    }
+
 }
 
 #imagelightbox-close:before
