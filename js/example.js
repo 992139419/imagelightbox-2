@@ -60,7 +60,10 @@ $(function() {
 
         var $arrows = $( '<button type="button" class="imagelightbox-arrow imagelightbox-arrow-left"></button><button type="button" class="imagelightbox-arrow imagelightbox-arrow-right"></button>' );
 
-        $arrows.appendTo( 'body' );
+        if (instance.length >= 2)
+        {
+            $arrows.appendTo( 'body' );
+        }
 
         $arrows.on( 'click touchend', function( e )
         {
