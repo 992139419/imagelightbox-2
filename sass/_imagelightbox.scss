@@ -187,10 +187,12 @@
 {
     background-color: #666;
     background-color: rgba( 0, 0, 0, .75 );
+    outline: 0;
 }
 .imagelightbox-arrow:active
 {
     background-color: #111;
+    outline: 0;
 }
 .imagelightbox-arrow-left
 {
@@ -204,7 +206,7 @@
 {
     width: 0;
     height: 0;
-    border: 1em solid transparent;
+    border: .75em solid transparent;
     content: '';
     display: inline-block;
     margin-bottom: -0.3em; /* 2 */
@@ -258,7 +260,7 @@
     .imagelightbox-arrow
     {
         width: 2.5em; /* 40 */
-        height: 3.75em; /* 60 */
+        height: 2.5em; /* 60 */
         margin-top: -2.75em; /* 30 */
     }
     .imagelightbox-arrow-left
@@ -280,5 +282,23 @@
     .imagelightbox-arrow-right
     {
         right: 0;
+    }
+}
+
+@media only screen and (min-width: 660px) {
+
+    .imagelightbox-arrow:before {
+
+        border: 1em solid transparent;
+    }
+    .imagelightbox-arrow-left:before
+    {
+        border-left: none;
+        border-right-color: #fff;
+    }
+    .imagelightbox-arrow-right:before
+    {
+        border-right: none;
+        border-left-color: #fff;
     }
 }
