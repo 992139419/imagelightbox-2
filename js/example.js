@@ -28,7 +28,7 @@ $(function() {
 
     closeButtonOn = function( instance )
     {
-        $( '<a href="#" id="imagelightbox-close">Close</a>' ).appendTo( 'body' );
+        $( '<a id="imagelightbox-close">Close</a>' ).appendTo( 'body' );
     },
 
     closeButtonOff = function()
@@ -98,7 +98,7 @@ $(function() {
     var selector =  'a[data-imagelightbox="thumb"]';
     var instance = $( selector ).imageLightbox(
     {
-	 	allowedTypes:	'png||jpg|jpeg||gif',
+	 	allowedTypes:	'png||jpg|jpeg|gif',
         preloadNext:    true,
         onStart:        function() { overlayOn(); closeButtonOn( instance ); arrowsOn( instance, selector );  },
         onEnd:          function() { overlayOff(); captionOff(); closeButtonOff(); activityIndicatorOff(); arrowsOff(); },

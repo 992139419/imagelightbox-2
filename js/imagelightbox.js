@@ -245,6 +245,7 @@
 					inProgress = false;
 					if( options.onEnd !== false ) options.onEnd();
 				});
+				return false;
 			};
 
 		$( window ).on( 'resize', setImage );
